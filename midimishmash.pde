@@ -25,7 +25,8 @@ int lastControllerValue = -1;
 int baseNote = 0;
 
 GButton btnDisableKM;
-boolean KMdisabled = false;
+boolean KMenabled = true;
+boolean intervalTeacherEnabled = false;
 
 Synth synth;
  // set this to false if you would rather use another program to create the sound.
@@ -56,10 +57,10 @@ void draw() {
   int[] chord = new int[0];
   String chordString = "";
   int baseNote = 0;
-  if (KMdisabled) {
-    background(210);
-  } else {
+  if (KMenabled) {
     background(255);
+  } else {
+    background(210);
   }
 
   // draw the keys
@@ -135,22 +136,33 @@ void draw() {
 
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnDisableKM){
-    enableKM(!KMdisabled);
+    enableKM(!KMenabled);
   }
 }
 
 void enableKM(boolean state) {
-  KMdisabled = state;
-  if (KMdisabled) {
-    keyLed(71, 1);
-  } else {
+  KMenabled = state;
+  if (KMenabled) {
     keyLed(71, 0);
+  } else {
+    keyLed(71, 1);
   }
 }
 
+void enableIntervalTeacher(boolean state) {
+  intervalTeacherEnabled = state;
+  if (intervalTeacherEnabled) {
+    enableKM(false);
+    keyLed(69, 1);
+  } else {
+    keyLed(69, 0);
+  }
+}
+
+
 void messageKM(String script) {
-    if (!KMdisabled) {
-        for (int i = 0; i < 40; i++) {
+  if (KMenabled) {
+    for (int i = 0; i < 40; i++) {
       keyLed(i, 1);
       delay(5);
     }
