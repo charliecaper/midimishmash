@@ -54,7 +54,7 @@ void setup() {
 }
 
 void draw() {
-  int[] chord = new int[0];
+  //int[] chord = new int[0];
   String chordString = "";
   int baseNote = 0;
   if (KMenabled) {
@@ -69,7 +69,7 @@ void draw() {
     int note = i % 12;
       // if a key is pressed, add it to the current chord.
     if (keys[i]) {
-      chord = append(chord, i);
+      //chord = append(chord, i);
       if (chordString.length() > 0) {
         chordString += ","+(i-baseNote);// % 12;
       } else {
