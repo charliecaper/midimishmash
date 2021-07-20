@@ -122,6 +122,11 @@ void draw() {
       }
     }
   }
+  if (intervalTeacherEnabled && !actedOnChord && chordString.length() > 0 && chordString.indexOf(",") == -1) {
+    println("------");
+    actedOnChord = true;
+    teachInterval(baseNote);
+  }
   
   strokeWeight(1);
   fill(0);

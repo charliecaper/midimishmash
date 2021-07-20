@@ -24,15 +24,46 @@ public class Synth {
     }
   }
   
-  public void noteOn(final int note, int velocity) {
+  public void noteOn(final int note, final int velocity) {
+    println("a"+note);
     if (useSynth) {
       channel[0].noteOn(note+noteOffset, velocity);
     }
   }
   
-  public void noteOff(final int note, int velocity) {
+  public void noteOff(final int note, final int velocity) {
     if (useSynth) {
       channel[0].noteOff(note+noteOffset, velocity);
     }
   }
+  
+  public void playNote(final int note, final int time) {
+    println("a"+note);
+    if (useSynth) {
+      Thread t = new Thread() {
+        public void run() {
+          try {
+           // if (channels != null && channels.length > 0) {
+              channel[0].noteOn(note, 120);
+              sleep(time);
+              channel[0].noteOff(note, 0);
+            //}
+          } 
+          catch (Exception ex) {
+            System.out.println("ERROR: " + ex);
+          }
+        }
+      };
+      t.start();
+    }
+  }
+  
+  private void sleep(int length) {
+    try {
+      Thread.sleep(length);
+    }
+    catch (Exception ex) {
+    }
+  }
+  
 }

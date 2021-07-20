@@ -24,7 +24,7 @@ String[][] chords = {
   {"0,3,7", "MINOR", "16", "KMPasteFromMidiClipboardPast"},
   {"0,3,7", "MINOR", "9", "KMLaunchIntelliJ"},
   
-  {"0,3,6", "DIMINISHED", "-1", ""},
+  {"0,3,6", "DIMINISHED", "11", "KMCutToMidiClipboard"},
   {"0,4,8", "AUGMENTED", "-1", ""},
   {"0,4,7,11", "MAJOR 7th", "-1", ""},
   {"0,3,7,11", "MINOR MAJOR", "-1", ""},
