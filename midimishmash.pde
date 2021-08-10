@@ -72,7 +72,6 @@ void draw() {
     int note = i % 12;
       // if a key is pressed, add it to the current chord.
     if (keys[i]) {
-      //chord = append(chord, i);
       if (chordString.length() > 0) {
         chordString += ","+(i-baseNote);// % 12;
       } else {
@@ -121,12 +120,13 @@ void draw() {
         fill(noteColors[i % 12]);
         rect(width-horiMargin/2, 0, horiMargin/2, height);
         fill(0);
+        textSize(32);
         text(noteNames[i % 12], width-horiMargin*2, height-vertMargin);
       }
     }
   }
   if (intervalTeacherEnabled && !actedOnChord && chordString.length() > 0 && chordString.indexOf(",") == -1) {
-    println("------");
+    //println("------");
     actedOnChord = true;
     teachInterval(baseNote);
   }
@@ -138,13 +138,8 @@ void draw() {
   } else {
     actedOnChord = false;
   }
-  
   handleVolume();
   drawNotation();
-  
-  if (notationTeacherEnabled) {
-   // teachNotation();
-  }
 }
 
 public void handleButtonEvents(GButton button, GEvent event) {
@@ -172,6 +167,14 @@ void enableIntervalTeacher(boolean state) {
   }
 }
 
+void enableNotationTeacher(boolean state) {
+  notationTeacherEnabled = state;
+  if (notationTeacherEnabled) {
+    keyLed(68, 1);
+  } else {
+    keyLed(68, 0);
+  }
+}
 
 void messageKM(String script) {
   if (KMenabled) {
