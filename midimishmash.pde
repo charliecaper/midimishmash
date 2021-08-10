@@ -23,16 +23,20 @@ long lastCommandSent = System.currentTimeMillis();
 int lastControllerValue = -1;
 
 int baseNote = 0;
+String chordString = "";
 
 GButton btnDisableKM;
-boolean KMdisabled = false;
+boolean KMenabled = true;
+boolean intervalTeacherEnabled = false;
 
 Synth synth;
  // set this to false if you would rather use another program to create the sound.
 boolean useSynth = true;
 
+boolean notationTeacherEnabled = true;
+
 void setup() {
-  size(1200, 400);
+  size(1200, 600);
   
   btnDisableKM = new GButton(this, horiMargin, height-vertMargin-20, 100, 20, "Maestro");
 
@@ -53,13 +57,13 @@ void setup() {
 }
 
 void draw() {
-  int[] chord = new int[0];
-  String chordString = "";
-  int baseNote = 0;
-  if (KMdisabled) {
-    background(210);
-  } else {
+  //int[] chord = new int[0];
+  chordString = "";
+  baseNote = 0;
+  if (KMenabled) {
     background(255);
+  } else {
+    background(210);
   }
 
   // draw the keys
@@ -68,7 +72,7 @@ void draw() {
     int note = i % 12;
       // if a key is pressed, add it to the current chord.
     if (keys[i]) {
-      chord = append(chord, i);
+      //chord = append(chord, i);
       if (chordString.length() > 0) {
         chordString += ","+(i-baseNote);// % 12;
       } else {
@@ -121,6 +125,11 @@ void draw() {
       }
     }
   }
+  if (intervalTeacherEnabled && !actedOnChord && chordString.length() > 0 && chordString.indexOf(",") == -1) {
+    println("------");
+    actedOnChord = true;
+    teachInterval(baseNote);
+  }
   
   strokeWeight(1);
   fill(0);
@@ -131,26 +140,42 @@ void draw() {
   }
   
   handleVolume();
+  drawNotation();
+  
+  if (notationTeacherEnabled) {
+   // teachNotation();
+  }
 }
 
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnDisableKM){
-    enableKM(!KMdisabled);
+    enableKM(!KMenabled);
   }
 }
 
 void enableKM(boolean state) {
-  KMdisabled = state;
-  if (KMdisabled) {
-    keyLed(71, 1);
-  } else {
+  KMenabled = state;
+  if (KMenabled) {
     keyLed(71, 0);
+  } else {
+    keyLed(71, 1);
   }
 }
 
+void enableIntervalTeacher(boolean state) {
+  intervalTeacherEnabled = state;
+  if (intervalTeacherEnabled) {
+    enableKM(false);
+    keyLed(69, 1);
+  } else {
+    keyLed(69, 0);
+  }
+}
+
+
 void messageKM(String script) {
-    if (!KMdisabled) {
-        for (int i = 0; i < 40; i++) {
+  if (KMenabled) {
+    for (int i = 0; i < 40; i++) {
       keyLed(i, 1);
       delay(5);
     }

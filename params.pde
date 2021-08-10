@@ -15,6 +15,7 @@ String[][] chords = {
   {"0,12", "Perfect 8ve", "-1", "Interval"},
   
   {"0,4,7", "MAJOR", "0", "KMUndo"},
+  {"0,4,7", "MAJOR", "7", "KMUnityToFront"},
   {"0,4,7", "MAJOR", "12", "KMCopyToMidiClipboard"},
   {"0,4,7", "MAJOR", "5", "KMLaunchFurhat"},
   {"0,4,7", "MAJOR", "17", "KMLaunchFinder"},
@@ -24,7 +25,7 @@ String[][] chords = {
   {"0,3,7", "MINOR", "16", "KMPasteFromMidiClipboardPast"},
   {"0,3,7", "MINOR", "9", "KMLaunchIntelliJ"},
   
-  {"0,3,6", "DIMINISHED", "-1", ""},
+  {"0,3,6", "DIMINISHED", "11", "KMCutToMidiClipboard"},
   {"0,4,8", "AUGMENTED", "-1", ""},
   {"0,4,7,11", "MAJOR 7th", "-1", ""},
   {"0,3,7,11", "MINOR MAJOR", "-1", ""},

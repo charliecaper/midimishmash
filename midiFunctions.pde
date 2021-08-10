@@ -8,7 +8,11 @@ void noteOn(int channel, int pitch, int velocity) {
   } else if (channel == 0) {
     synth.noteOn(pitch-keyOffset+50,100);
     if (pitch == 71) {
-      enableKM(!KMdisabled);
+      enableKM(!KMenabled);
+    } else if (pitch == 69) {
+      enableIntervalTeacher(!intervalTeacherEnabled);
+    } else if (pitch == 68) {
+      notationTeacherEnabled = !notationTeacherEnabled;
     } else if (pitch == 93) {
       messageKM("KMActivateMidiKeys");
     }
