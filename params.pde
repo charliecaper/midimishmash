@@ -15,6 +15,7 @@ String[][] chords = {
   {"0,12", "Perfect 8ve", "-1", "Interval"},
   
   {"0,4,7", "MAJOR", "0", "KMUndo"},
+  {"0,4,7", "MAJOR", "7", "KMUnityToFront"},
   {"0,4,7", "MAJOR", "12", "KMCopyToMidiClipboard"},
   {"0,4,7", "MAJOR", "5", "KMLaunchFurhat"},
   {"0,4,7", "MAJOR", "17", "KMLaunchFinder"},

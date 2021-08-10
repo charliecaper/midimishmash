@@ -23,6 +23,7 @@ long lastCommandSent = System.currentTimeMillis();
 int lastControllerValue = -1;
 
 int baseNote = 0;
+String chordString = "";
 
 GButton btnDisableKM;
 boolean KMenabled = true;
@@ -32,8 +33,10 @@ Synth synth;
  // set this to false if you would rather use another program to create the sound.
 boolean useSynth = true;
 
+boolean notationTeacherEnabled = true;
+
 void setup() {
-  size(1200, 400);
+  size(1200, 600);
   
   btnDisableKM = new GButton(this, horiMargin, height-vertMargin-20, 100, 20, "Maestro");
 
@@ -55,8 +58,8 @@ void setup() {
 
 void draw() {
   //int[] chord = new int[0];
-  String chordString = "";
-  int baseNote = 0;
+  chordString = "";
+  baseNote = 0;
   if (KMenabled) {
     background(255);
   } else {
@@ -137,6 +140,11 @@ void draw() {
   }
   
   handleVolume();
+  drawNotation();
+  
+  if (notationTeacherEnabled) {
+   // teachNotation();
+  }
 }
 
 public void handleButtonEvents(GButton button, GEvent event) {

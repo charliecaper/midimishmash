@@ -11,6 +11,8 @@ void noteOn(int channel, int pitch, int velocity) {
       enableKM(!KMenabled);
     } else if (pitch == 69) {
       enableIntervalTeacher(!intervalTeacherEnabled);
+    } else if (pitch == 68) {
+      notationTeacherEnabled = !notationTeacherEnabled;
     } else if (pitch == 93) {
       messageKM("KMActivateMidiKeys");
     }
